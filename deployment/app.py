@@ -22,7 +22,7 @@ st.markdown(hide_streamlit_style, unsafe_allow_html=True)
 st.sidebar.title("Navigation")
 selected = st.sidebar.radio(
     "Go to",
-    options=["Main Page", "About Us", "FAQs", "Contact Us", "AI Processing"]
+    options=["Main Page", "About Us", "FAQs", "Contact Us", "AI Processing", "HIREiT Beta"]
 )
 
 # Navigation Logic
@@ -42,6 +42,7 @@ elif selected == "Contact Us":
     from pages.contact_us import contact_us_page
     contact_us_page()
 
+    '''
 elif selected == "AI Processing":
     # AI Processing Logic
     st.title("AI Processing Tasks")
@@ -69,11 +70,11 @@ elif selected == "AI Processing":
         except Exception as e:
             st.error(f"Audio Classification failed: {e}")
 
-            '''try:
+            try:
             # Task 2: Audio Transcription
             st.write("Task 2: Audio Transcription")
             transcriber = WhisperTranscriber("./Models/whisper_medium.pt")
-            results["audio_transcription"] = transcriber.transcribe(temp_file_path)'''
+            results["audio_transcription"] = transcriber.transcribe(temp_file_path)
 
         except Exception as e:
             st.error(f"Audio Transcription failed: {e}")
@@ -103,4 +104,8 @@ elif selected == "AI Processing":
 
         # Cleanup temporary file
         if os.path.exists(temp_file_path):
-            os.remove(temp_file_path)
+            os.remove(temp_file_path)'''
+
+elif selected == "HIREiT Beta":
+    from pages.HIREiT_Beta import hireit_beta_page
+    hireit_beta_page()

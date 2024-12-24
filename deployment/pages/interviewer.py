@@ -8,8 +8,7 @@ db = client["interview_system"]
 users_collection = db["users"]
 interviews_collection = db["interviews"]
 
-# Main Page Configuration
-st.set_page_config(page_title="Interview Automation System", page_icon="🔍", layout="centered")
+st.set_page_config(page_title="HIREiT", page_icon="🔍", layout="centered")
 
 # Helper Functions
 def authenticate_user(username, password):
@@ -29,7 +28,7 @@ def login_signup_page():
     # Login Tab
     with tab[0]:
         st.subheader("Login")
-        username = st.text_input("Username", key="login_username")
+        username = st.text_input("National ID", key="login_username")
         password = st.text_input("Password", type="password", key="login_password")
         login_btn = st.button("Login")
 
@@ -44,7 +43,7 @@ def login_signup_page():
     # Sign-Up Tab
     with tab[1]:
         st.subheader("Sign-Up")
-        new_username = st.text_input("New Username", key="signup_username")
+        new_username = st.text_input("National ID", key="signup_username")
         new_password = st.text_input("New Password", type="password", key="signup_password")
         confirm_password = st.text_input("Confirm Password", type="password", key="signup_confirm_password")
         organization = st.text_input("Organization", key="signup_organization")
@@ -55,7 +54,7 @@ def login_signup_page():
                 if create_account(new_username, new_password, organization):
                     st.success("Account created successfully! Please log in.")
                 else:
-                    st.error("Username already exists.")
+                    st.error("National ID already exists.")
             else:
                 st.error("Passwords do not match.")
 
@@ -65,9 +64,9 @@ def dashboard_page():
     # Create New Interview Section
     st.subheader("Create a New Interview")
     interviewee = st.text_input("Interviewee Username")
-    date = st.date_input("Date")
-    time = st.time_input("Time")
-    questions = st.text_area("Questions (separate by newline)").split("\n")
+    date = st.date_input("DueDate")
+    time = st.time_input("Due Time")
+    questions = st.text_area("Questions").split("\n")
     create_btn = st.button("Create Interview")
 
     if create_btn:
@@ -91,7 +90,7 @@ def dashboard_page():
     if len(interviews) > 0:
         for interview in interviews:
             st.markdown(
-                f"- **Interviewee:** {interview['interviewee']} | **Date:** {interview['date']} | **Time:** {interview['time']}"
+                f"- **Interviewee:** {interview['interviewee']} | **Due Date:** {interview['date']} | **Due Time:** {interview['time']}"
             )
             if st.button(f"View Interview: {interview['_id']}", key=f"view_{interview['_id']}"):
                 st.session_state["current_interview"] = interview
@@ -109,7 +108,7 @@ def view_interview_page():
     interview = st.session_state["current_interview"]
 
     st.title(f"Interview ID: {interview['_id']}")
-    st.subheader(f"Interviewee: {interview['interviewee']} | Date: {interview['date']} | Time: {interview['time']}")
+    st.subheader(f"Interviewee: {interview['interviewee']} | Due Date: {interview['date']} | DueTime: {interview['time']}")
 
     # Display Questions
     st.subheader("Interview Questions")

@@ -50,7 +50,7 @@ class VideoRecorder(VideoProcessorBase):
                     container.mux(frame.to_image().to_ndarray())
 
 def process_recording(file_path):
-    # Mock processing logic; replace with your actual model processing
+    # Mock processing logic, to give a taste of how it works.. we had issues with recording and soring the video files
     return {
         "audio_classification": "Clear Speech",
         "audio_transcription": "Mock transcription result",
@@ -120,7 +120,7 @@ def dashboard_page():
 
     if len(interviews) > 0:
         for interview in interviews:
-            st.markdown(f"- **Interview ID:** {interview['_id']} | **Date:** {interview['date']} | **Time:** {interview['time']}")
+            st.markdown(f"- **Interview ID:** {interview['_id']} | **Due Date:** {interview['date']} | **DueTime:** {interview['time']}")
             if st.button(f"Start Interview {interview['_id']}", key=f"start_{interview['_id']}"):
                 st.session_state["current_interview"] = interview
                 st.session_state["page"] = "interview"
@@ -133,13 +133,13 @@ def dashboard_page():
         st.session_state["page"] = "login"
 
 def login_signup_page():
-    st.title("Interviewee Login/Sign-Up")
+    st.title("Interviewee Page")
     tab = st.tabs(["Login", "Sign-Up"])
 
     # Login Tab
     with tab[0]:
         st.subheader("Login")
-        username = st.text_input("Username", key="login_username")
+        username = st.text_input("National ID", key="login_username")
         password = st.text_input("Password", type="password", key="login_password")
         login_btn = st.button("Login")
 
@@ -149,12 +149,12 @@ def login_signup_page():
                 st.session_state["username"] = username
                 st.session_state["page"] = "dashboard"
             else:
-                st.error("Invalid username or password")
+                st.error("Invalid National ID or password")
 
     # Sign-Up Tab
     with tab[1]:
         st.subheader("Sign-Up")
-        new_username = st.text_input("New Username", key="signup_username")
+        new_username = st.text_input("National ID", key="signup_username")
         new_password = st.text_input("New Password", type="password", key="signup_password")
         confirm_password = st.text_input("Confirm Password", type="password", key="signup_confirm_password")
         signup_btn = st.button("Sign-Up")
@@ -164,7 +164,7 @@ def login_signup_page():
                 if create_account(new_username, new_password):
                     st.success("Account created successfully! Please log in.")
                 else:
-                    st.error("Username already exists.")
+                    st.error("National ID already exists.")
             else:
                 st.error("Passwords do not match.")
 

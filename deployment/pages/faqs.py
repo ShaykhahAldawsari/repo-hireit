@@ -1,6 +1,5 @@
 import streamlit as st
 
-# Main Page Configuration
 
 # FAQs Content
 def faqs_page():
@@ -10,7 +9,6 @@ def faqs_page():
         Below you can find answers to common questions. Click on each question to view the answer.
     """)
 
-    # Dropdown Questions
     with st.expander("What is the Interview Automation System?"):
         st.write("The Interview Automation System is a platform designed to streamline and partially automate interviews by providing tools for scheduling, conducting, and analyzing interviews with AI insights.")
 
@@ -38,5 +36,4 @@ def faqs_page():
     with st.expander("Who do I contact for support?"):
         st.write("For support, email us at support@interviewautomation.com or visit the \"Contact Us\" page.")
 
-# Display FAQs
 faqs_page()

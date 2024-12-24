@@ -7,8 +7,8 @@ from email.mime.multipart import MIMEMultipart
 
 # Email Sending Function
 def send_email(subject, body):
-    sender_email = "your_email@example.com"  # Replace with your email
-    sender_password = "your_password"  # Replace with your email password
+    sender_email = "lishayikhah@gmail.com"  
+    sender_password = "your_password"  # for security reasons
     recipient_email = "lishaikhahil@gmail.com"
 
     # Setting up the MIME
@@ -52,5 +52,4 @@ def contact_us_page():
             else:
                 st.error("Please fill in all the fields before submitting.")
 
-# Display Contact Us Page
 contact_us_page()
