@@ -1,5 +1,4 @@
-import streamlit as st 
-from streamlit_option_menu import option_menu
+import streamlit as st
 from audio_classifier import AudioClassifier
 from whisper_transcriber import WhisperTranscriber
 from hand_movement_analyzer import HandMovementAnalyzer
@@ -15,20 +14,16 @@ hide_streamlit_style = """
     #MainMenu {visibility: hidden;} /* Hides the hamburger menu */
     header {visibility: hidden;} /* Hides the Streamlit header */
     footer {visibility: hidden;} /* Hides the Streamlit footer */
-    .css-1v3fvcr {visibility: hidden;} /* Hides the multipage list */
     </style>
 """
 st.markdown(hide_streamlit_style, unsafe_allow_html=True)
 
 # Sidebar Navigation
-with st.sidebar:
-    selected = option_menu(
-        menu_title="Navigation",  # required
-        options=["Main Page", "About Us", "FAQs", "Contact Us", "AI Processing"],  # required
-        icons=["house", "info-circle", "question-circle", "envelope", "gear"],  # optional
-        menu_icon="cast",  # optional
-        default_index=0,  # default selected item
-    )
+st.sidebar.title("Navigation")
+selected = st.sidebar.radio(
+    "Go to",
+    options=["Main Page", "About Us", "FAQs", "Contact Us", "AI Processing"]
+)
 
 # Navigation Logic
 if selected == "Main Page":
@@ -74,14 +69,15 @@ elif selected == "AI Processing":
         except Exception as e:
             st.error(f"Audio Classification failed: {e}")
 
-            ''' try:
+            '''try:
             # Task 2: Audio Transcription
             st.write("Task 2: Audio Transcription")
             transcriber = WhisperTranscriber("./Models/whisper_medium.pt")
-            results["audio_transcription"] = transcriber.transcribe(temp_file_path)
+            results["audio_transcription"] = transcriber.transcribe(temp_file_path)'''
 
         except Exception as e:
-            st.error(f"Audio Transcription failed: {e}")'''
+            st.error(f"Audio Transcription failed: {e}")
+
         try:
             # Task 3: Hand Movement Analysis
             st.write("Task 3: Hand Movement Analysis")
