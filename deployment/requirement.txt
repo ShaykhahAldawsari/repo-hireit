@@ -1,7 +1,7 @@
 streamlit
-transformers
 mediapipe
-torch
+transformers==4.33.0
+torch>=1.12.0
 opencv-python
 scikit-learn
 whisper
