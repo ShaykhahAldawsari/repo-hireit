@@ -1,14 +1,11 @@
+streamlit
 transformers
 mediapipe
-collections
-pickle
 torch
 opencv-python
 scikit-learn
 whisper
 pymongo
 streamlit-webrtc
-streamlit
 av
-os
 numpy
